@@ -35,7 +35,7 @@ const numberGuessingGame = (range = 2, point = 0, stage = 1, play = true) => {
 const startGame = () => {
   while (start) {
     const startInstruction = Number(
-      prompt(`${welcomeUser}${start}\n1. Yes\n2. No`)
+      prompt(`${welcomeUser}${startMessage}\n1. Yes\n2. No`)
     );
     if (startInstruction === 1) {
       numberGuessingGame();
