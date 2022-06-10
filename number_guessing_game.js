@@ -38,3 +38,5 @@ const startGame = () => {
     }
   }
 };
+
+startGame();
