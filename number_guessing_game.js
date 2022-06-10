@@ -1,24 +1,40 @@
+let quit = true;
 const getRndInteger = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-const user = prompt(`Please enter your name: `);
+const username = prompt(`Please enter your name: `);
 
-const numberGuessingGame = (range = 2, point = 0) => {
-  const guessedNum = Number(
-    prompt(`Welcome ${user} Guess a number between 1 and ${range}: `)
-  );
+const numberGuessingGame = (range = 2, point = 0, stage = 1) => {
+  const guessedNum = Number(prompt(`Guess a number between 1 and ${range}: `));
   console.log(guessedNum);
 
   const rangeNumber = getRndInteger(1, range);
   if (guessedNum === rangeNumber) {
-    point += 1;
-    range += 1;
+    point++;
+    range++;
+    stage++;
     numberGuessingGame(range, point);
+    console.log(
+      `Weldone ${username}, You are unto the next stage ${stage}. Your point(s) is ${point}`
+    );
   } else {
     console.log(`Game over`);
-    console.log(`${user}, Your point is ${point}`);
+    console.log(
+      `Sorry ${username}, The correct number is ${guessedNum}. Your total point(s) is ${point}`
+    );
   }
 };
 
-numberGuessingGame();
+const startGame = () => {
+  while (quit) {
+    const startInstruction = Number(prompt(`Ready to play?\n1. Yes 2. Exit`));
+    if (startInstruction === 1) {
+      numberGuessingGame();
+    } else if (startInstruction === 2) {
+      quit = false;
+    } else {
+      console.log(`Enter a valid number.`);
+    }
+  }
+};
